@@ -4,9 +4,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.3",
-    "nodemon": "^3.1.10",
     "server": "file:"
   },
   "name": "server",
@@ -14,9 +14,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "set NODE_ENV=production & nodemon index.js",
+    "dev": "set NODE_ENV=development & nodemon index.js"
   },
   "author": "Jevin Morad",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
 }
