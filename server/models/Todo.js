@@ -1,22 +1,21 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const TaskSchema = Schema({
-    user_id: {
-        type: Schema.Types.ObjectId,
+const todoSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         require: true,
     },
     title: {
         type: String,
-        required: true,
+        required: [true, 'Please add a title'],
     },
     description: {
         type: String,
     },
     completed: {
         type: Boolean,
-        required: true,
+        default: false,
     },
     due_date: {
         type: Date,
@@ -26,17 +25,17 @@ const TaskSchema = Schema({
         type: String,
     },
     tags: {
-        type: [Schema.Types.String],
+        type: [mongoose.Schema.Types.String],
     },
     subtask: [
         {
             title: {
                 type: String,
-                required: true,
+                required: [true, 'Please add a title for subtask'],
             },
             completed: {
                 type: Boolean,
-                required: true,
+                default: false
             }
         }
     ],
@@ -47,3 +46,5 @@ const TaskSchema = Schema({
         type: String,
     }
 }, { timestamps: true });
+
+module.exports = mongoose.model('Todo', todoSchema);
