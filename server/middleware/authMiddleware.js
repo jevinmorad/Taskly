@@ -4,10 +4,11 @@ const { verifyToken } = require('../config/jwt');
 // Protect routes - user must be logged in
 const protect = async (req, res, next) => {
     let token;
-    if (req.headers.authorizations && req.headers.authorizations.startsWith('Bearer')) {
+
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
             // Get token
-            token = req.headers.authorizations.split(' ')[1];
+            token = req.headers.authorization.split(' ')[1];
 
             // Verify token
             const decode = verifyToken(token);
