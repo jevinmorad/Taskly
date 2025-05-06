@@ -13,7 +13,11 @@ const generateTokens = (user) => {
     )
 
     const refreshToken = jwt.sign(
+<<<<<<< HEAD
         { id: user._id, email: user.email },
+=======
+        { userId: user._id, email: user.email },
+>>>>>>> 2b500f0 (on check)
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: '30d' }
     )
@@ -32,7 +36,11 @@ const verifyAccessToken = (token) => {
 }
 
 /**
+<<<<<<< HEAD
  * Verify JWT refresh token
+=======
+ * Verify JET refresh token
+>>>>>>> 2b500f0 (on check)
  * @param {String} token - JWT refresh token
  * @returns {Object} Decoded token payload if valid
  * @throws {Error} If token is invalid or expired
@@ -44,5 +52,9 @@ const verifyRefreshToken = (token) => {
 module.exports = {
     generateTokens,
     verifyAccessToken,
+<<<<<<< HEAD
     verifyRefreshToken,
+=======
+    verifyRefreshToken
+>>>>>>> 2b500f0 (on check)
 }
