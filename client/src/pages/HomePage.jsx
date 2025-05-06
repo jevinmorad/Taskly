@@ -1,10 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
-import { useContext, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { useEffect } from 'react';
 import Dashboard from './Dashboard';
 
-const Home = () => {
-    const { user } = useContext(AuthContext);
+const HomePage = () => {
+    const { user } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -35,4 +35,4 @@ const Home = () => {
     );
 }
 
-export default Home
+export default HomePage

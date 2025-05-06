@@ -1,10 +1,8 @@
 const errorHandler = (err, req, res, next) => {
     console.error(err.stack);
 
-
     const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-    res.status(statusCode);
-    res.json({
+    res.status(statusCode).json({
         message: req.message,
         stack: process.env.NODE_ENV === 'production' ? null : err.stack
     })
@@ -16,4 +14,7 @@ const notFound = (req, res, next) => {
     next(error);
 }
 
-module.exports = { errorHandler, notFound }
+module.exports = {
+    errorHandler,
+    notFound
+}

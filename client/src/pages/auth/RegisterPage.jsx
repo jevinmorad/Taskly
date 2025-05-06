@@ -1,25 +1,20 @@
-import { useContext, useEffect, useState } from 'react';
-import { Mail, Lock, ArrowRight } from 'lucide-react';
-import AuthContext from '../../context/AuthContext';
+import { useEffect, useState } from 'react';
+import { Mail, Lock, User, ArrowRight } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
-    const [formData, setFormData] = useState({ email: '', password: '' });
-
-    const { email, password } = formData;
-
-    const { user, login, error, setError } = useContext(AuthContext);
+const RegisterPage = () => {
+    const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+    const [loading, setLoading] = useState(false);
+    const { name, email, password } = formData;
+    const { register } = useAuth();
     const navigate = useNavigate();
 
-    const toggleAuthMode = () => {
-        navigate('/auth/signup')
-    }
-
-    useEffect(() => {
-        if (user) {
-            navigate('/dashboard');
-        }
-    }, [user, navigate]);
+    // useEffect(() => {
+    //     if (user) {
+    //         navigate('/dashboard');
+    //     }
+    // }, [user, navigate]);
 
     const handleChange = (e) => {
         setFormData((prevState) => ({
@@ -28,15 +23,18 @@ const Login = () => {
         }));
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(null);
-
-        if (!email || !password) {
-            setError('Please fill in all fields');
-            return;
+        try {
+            await register({ name, email, password });
+            navigate('/dashboard');
+        } catch (error) {
+            console.log('Registration failed. Please try again.');
+            throw error;
+        } finally {
+            setLoading(false);
         }
-        login({ email, password });
+        await register({ name, email, password });
     }
 
     const handleGoogleLogin = () => {
@@ -48,15 +46,36 @@ const Login = () => {
             <div className="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-xl">
                 {/* Header */}
                 <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-8 py-6 text-white">
-                    <h2 className="text-3xl font-bold">Welcome Back</h2>
+                    <h2 className="text-3xl font-bold">Create Account</h2>
                     <p className="mt-2 text-blue-100">
-                        Sign in to access your account
+                        Sign up to get started with our service
                     </p>
                 </div>
 
                 {/* Form Container */}
                 <form className="p-8" onSubmit={handleSubmit}>
                     <div className="space-y-5">
+
+                        <div className="space-y-2">
+                            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                                Full Name
+                            </label>
+                            <div className="relative rounded-md shadow-sm">
+                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <User className="h-5 w-5 text-gray-400" />
+                                </div>
+                                <input
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    value={name}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                    placeholder="John Doe"
+                                />
+                            </div>
+                        </div>
 
                         {/* Email Field */}
                         <div className="space-y-2">
@@ -96,21 +115,12 @@ const Login = () => {
                                     type='password'
                                     value={password}
                                     onChange={handleChange}
-                                    autoComplete='current-password'
+                                    autoComplete='new-password'
                                     required
                                     className="w-full rounded-lg border border-gray-300 py-3 pl-10 pr-4 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                                    placeholder='••••••••'
+                                    placeholder='Create password'
                                 />
                             </div>
-                        </div>
-
-                        <div className="text-right">
-                            <button
-                                type="button"
-                                className="text-sm font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline"
-                            >
-                                Forgot password?
-                            </button>
                         </div>
 
                         {/* Submit Button */}
@@ -118,7 +128,7 @@ const Login = () => {
                             type='submit'
                             className="flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-indigo-700 py-3 px-4 text-sm font-medium text-white shadow-md hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         >
-                            <span>Sign In</span>
+                            <span>Sign Up</span>
                             <ArrowRight className="ml-2 h-5 w-5" />
                         </button>
 
@@ -152,12 +162,12 @@ const Login = () => {
 
                     {/* Switch between Login and Signup */}
                     <p className="mt-6 text-center text-sm text-gray-600">
-                        Don't have an account?
+                        Already have an account?
                         <button
-                            onClick={toggleAuthMode}
+                            onClick={() => navigate('/auth/login')}
                             className="ml-1 font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline"
                         >
-                            Sign up
+                            Sign in
                         </button>
                     </p>
                 </form>
@@ -166,4 +176,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default RegisterPage

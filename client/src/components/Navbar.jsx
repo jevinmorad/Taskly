@@ -1,12 +1,11 @@
 import { HelpCircle, Search, Settings } from "lucide-react";
 import ThemeToggleButton from "./ThemeToggleButton";
-import AuthContext from "../context/AuthContext";
-import { useContext } from "react";
+import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-    const { user, logout } = useContext(AuthContext);
-    const navigate = useNavigate();
+    // const { user } = useAuth();
+    // const navigate = useNavigate();
 
     return (
         <header className="w-full h-12 flex items-center justify-between px-4 bg-purple-header text-white dark:bg-zinc-900 border-b border-1 border-gray-50">
