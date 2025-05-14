@@ -1,7 +1,9 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
+const passport = require('passport');
 
 // Load env vars
 dotenv.config()
@@ -12,8 +14,16 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+}));
 app.use(express.json());
+app.use(cookieParser());
+app.use(passport.initialize());
+
+// Register Google strategy before routes
+require('./config/passport');
 
 // Route files
 const authRoutes = require('./routes/auth.route.js');

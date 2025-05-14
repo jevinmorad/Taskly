@@ -2,25 +2,28 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import { AuthProvider } from "./context/AuthContext";
-import Home from "./pages/Home";
 import PrivateRoute from "./components/PrivateRoute";
-import Signup from "./components/auth/Signup";
-import Login from "./components/auth/Login";
+import RegisterPage from "./pages/auth/RegisterPage.jsx";
+import LoginPage from "./pages/auth/LoginPage.jsx";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import CallbackPage from "./pages/auth/CallbackPage.jsx";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/auth/signup' element={<Signup />} />
-          <Route path='/auth/login' element={<Login />} />
-          <Route element={<PrivateRoute />} >
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </AuthProvider>
+      <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+        <AuthProvider>
+          <Routes>
+            <Route element={<PrivateRoute />} >
+              <Route path="/" element={<Dashboard />} />
+            </Route>
+            <Route path='/auth/register' element={<RegisterPage />} />
+            <Route path='/auth/login' element={<LoginPage />} />
+            <Route path='/auth/callback' element={<CallbackPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
+      </GoogleOAuthProvider>
     </BrowserRouter>
   );
 }
