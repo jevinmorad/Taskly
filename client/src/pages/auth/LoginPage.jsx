@@ -1,32 +1,14 @@
-<<<<<<< HEAD
 import { useState } from 'react';
 import { Mail, Lock, ArrowRight, CheckSquare } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
-=======
-import { useEffect, useState } from 'react';
-import { Mail, Lock, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
->>>>>>> 2b500f0 (on check)
 import { useAuth } from '../../context/AuthContext';
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
-<<<<<<< HEAD
-=======
-    const [loading, setLoading] = useState(false);
->>>>>>> 2b500f0 (on check)
     const { email, password } = formData;
     const { login } = useAuth();
     const navigate = useNavigate();
 
-<<<<<<< HEAD
-=======
-    // useEffect(() => {
-    //     if (user) {
-    //         navigate('/dashboard');
-    //     }
-    // }, [user, navigate]);
->>>>>>> 2b500f0 (on check)
 
     const handleChange = (e) => {
         setFormData((prevState) => ({
@@ -39,19 +21,10 @@ const LoginPage = () => {
         e.preventDefault();
         try {
             await login({ email, password });
-<<<<<<< HEAD
             navigate('/')
         } catch (error) {
             console.log('Login failed. Please check your credentials.');
             throw error;
-=======
-            navigate('/dashboard');
-        } catch (error) {
-            console.log('Login failed. Please check your credentials.');
-            throw error;
-        } finally {
-            setLoading(false);
->>>>>>> 2b500f0 (on check)
         }
     }
 
@@ -211,13 +184,8 @@ const LoginPage = () => {
                     {/* Switch between Login and Signup */}
                     <p className="mt-6 text-center text-sm text-gray-600">
                         Don't have an account?
-<<<<<<< HEAD
                         <Link
                             to={'/auth/register'}
-=======
-                        <button
-                            onClick={() => navigate('/auth/register')}
->>>>>>> 2b500f0 (on check)
                             className="ml-1 font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline"
                         >
                             Sign up

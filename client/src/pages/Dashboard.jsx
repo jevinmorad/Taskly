@@ -1,18 +1,9 @@
 import Navbar from '../components/Navbar';
-<<<<<<< HEAD
 import { Outlet, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Dashboard = () => {
   const { logout } = useAuth();
-=======
-import { Outlet, Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-
-const Dashboard = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
->>>>>>> 2b500f0 (on check)
 
   return (
     <>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState } from 'react';
 import { Mail, Lock, User, ArrowRight, CheckSquare } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -6,29 +5,10 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
-=======
-import { useEffect, useState } from 'react';
-import { Mail, Lock, User, ArrowRight } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-
-const RegisterPage = () => {
-    const [formData, setFormData] = useState({ name: '', email: '', password: '' });
-    const [loading, setLoading] = useState(false);
->>>>>>> 2b500f0 (on check)
     const { name, email, password } = formData;
     const { register } = useAuth();
     const navigate = useNavigate();
 
-<<<<<<< HEAD
-=======
-    // useEffect(() => {
-    //     if (user) {
-    //         navigate('/dashboard');
-    //     }
-    // }, [user, navigate]);
-
->>>>>>> 2b500f0 (on check)
     const handleChange = (e) => {
         setFormData((prevState) => ({
             ...prevState,
@@ -40,19 +20,10 @@ const RegisterPage = () => {
         e.preventDefault();
         try {
             await register({ name, email, password });
-<<<<<<< HEAD
             navigate('/');
         } catch (error) {
             console.log('Registration failed. Please try again.');
             throw error;
-=======
-            navigate('/dashboard');
-        } catch (error) {
-            console.log('Registration failed. Please try again.');
-            throw error;
-        } finally {
-            setLoading(false);
->>>>>>> 2b500f0 (on check)
         }
         await register({ name, email, password });
     }
@@ -226,13 +197,8 @@ const RegisterPage = () => {
                     {/* Switch to Login */}
                     <p className="mt-6 text-center text-sm text-gray-600">
                         Already have an account?
-<<<<<<< HEAD
                         <Link
                             to={'/auth/login'}
-=======
-                        <button
-                            onClick={() => navigate('/auth/login')}
->>>>>>> 2b500f0 (on check)
                             className="ml-1 font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline"
                         >
                             Sign in
