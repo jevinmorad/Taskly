@@ -6,7 +6,6 @@ import PrivateRoute from "./components/PrivateRoute";
 import RegisterPage from "./pages/auth/RegisterPage.jsx";
 import LoginPage from "./pages/auth/LoginPage.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import CallbackPage from "./pages/auth/CallbackPage.jsx";
 
 export default function App() {
   return (

@@ -252,10 +252,16 @@ const getMe = async (req, res, next) => {
 module.exports = {
     register,
     login,
+<<<<<<< HEAD
     logout,
     refreshToken,
     checkSession,
     googleAuth,
     googleAuthCallback,
     getMe,
+=======
+    refreshToken,
+    logout,
+    getMe
+>>>>>>> 2b500f063109840196c4165f4ed4d5271b11daa4
 }
