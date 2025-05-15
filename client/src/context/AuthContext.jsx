@@ -4,9 +4,6 @@ import { authApi } from '../api/apiService';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-
-    const API_URL = 'http://localhost:5000/api/auth'
-
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [accessToken, setAccessToken] = useState(null);
@@ -76,65 +73,6 @@ export const AuthProvider = ({ children }) => {
             throw error;
         }
     }
-
-    /**
-     * Refreshes access token using refresh token
-     */
-    const refreshToken = async () => {
-        try {
-            const response = await axios.post(`${API_URL}/refresh-token`, {}, { withCredentials: true });
-            localStorage.setItem('accessToken', response.data.accessToken);
-            setAccessToken(response.data.accessToken);
-            return response.data.accessToken;
-        } catch (error) {
-            logout();
-            throw error;
-        }
-    }
-
-    // Axios response interceptor for token refresh
-    useEffect(() => {
-        const interceptor = axios.interceptors.response.use(
-            response => response,
-            async error => {
-                const originalRequest = error.config;
-
-                // If error is 401 and we haven't already retried
-                if (error.response?.status === 401 && !originalRequest._retry) {
-                    originalRequest._retry = true;
-
-                    try {
-                        const newAccessToken = await refreshToken();
-                        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-                        return axios(originalRequest);
-                    } catch (refreshError) {
-                        logout();
-                        return Promise.reject(refreshError);
-                    }
-                }
-
-                return Promise.reject(error);
-            }
-        );
-
-        return () => {
-            axios.interceptors.response.eject(interceptor);
-        };
-    }, []);
-
-    // Axios request interceptor for adding auth header
-    useEffect(() => {
-        const interceptor = axios.interceptors.request.use(config => {
-            if (accessToken) {
-                config.headers.Authorization = `Bearer ${accessToken}`;
-            }
-            return config;
-        });
-
-        return () => {
-            axios.interceptors.request.eject(interceptor);
-        };
-    }, [accessToken]);
 
     return (
         <AuthContext.Provider

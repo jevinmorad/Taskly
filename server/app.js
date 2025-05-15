@@ -19,15 +19,11 @@ app.use(cors({
     credentials: true,
 }));
 app.use(express.json());
-<<<<<<< HEAD
 app.use(cookieParser());
 app.use(passport.initialize());
 
 // Register Google strategy before routes
 require('./config/passport');
-=======
-app.use(cookieParser)
->>>>>>> 2b500f063109840196c4165f4ed4d5271b11daa4
 
 // Route files
 const authRoutes = require('./routes/auth.route.js');

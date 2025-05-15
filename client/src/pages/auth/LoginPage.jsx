@@ -20,19 +20,10 @@ const LoginPage = () => {
         e.preventDefault();
         try {
             await login({ email, password });
-<<<<<<< HEAD
             navigate('/')
         } catch (error) {
             console.log('Login failed. Please check your credentials.');
             throw error;
-=======
-            navigate('/dashboard');
-        } catch (error) {
-            console.log('Login failed. Please check your credentials.');
-            throw error;
-        } finally {
-            setLoading(false);
->>>>>>> 2b500f063109840196c4165f4ed4d5271b11daa4
         }
     }
 
@@ -129,6 +120,7 @@ const LoginPage = () => {
                                 <input
                                     id="password"
                                     name="password"
+                                    type="password"
                                     value={password}
                                     onChange={handleChange}
                                     autoComplete='current-password'
@@ -192,13 +184,8 @@ const LoginPage = () => {
                     {/* Switch between Login and Signup */}
                     <p className="mt-6 text-center text-sm text-gray-600">
                         Don't have an account?
-<<<<<<< HEAD
                         <Link
                             to={'/auth/register'}
-=======
-                        <button
-                            onClick={() => navigate('/auth/register')}
->>>>>>> 2b500f063109840196c4165f4ed4d5271b11daa4
                             className="ml-1 font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline"
                         >
                             Sign up

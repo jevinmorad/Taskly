@@ -18,7 +18,6 @@ export default function App() {
             </Route>
             <Route path='/auth/register' element={<RegisterPage />} />
             <Route path='/auth/login' element={<LoginPage />} />
-            <Route path='/auth/callback' element={<CallbackPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>

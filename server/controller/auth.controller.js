@@ -211,9 +211,6 @@ const googleAuthCallback = (req, res, next) => {
         if (err) return next(err);
         if (!user.user) return res.redirect('/auth/login');
 
-        console.log("Refresh token: ", user.refreshToken);
-
-
         res.cookie('refreshToken', user.refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV == 'production ',
@@ -252,16 +249,10 @@ const getMe = async (req, res, next) => {
 module.exports = {
     register,
     login,
-<<<<<<< HEAD
     logout,
     refreshToken,
     checkSession,
     googleAuth,
     googleAuthCallback,
     getMe,
-=======
-    refreshToken,
-    logout,
-    getMe
->>>>>>> 2b500f063109840196c4165f4ed4d5271b11daa4
 }

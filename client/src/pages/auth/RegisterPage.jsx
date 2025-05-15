@@ -197,13 +197,8 @@ const RegisterPage = () => {
                     {/* Switch to Login */}
                     <p className="mt-6 text-center text-sm text-gray-600">
                         Already have an account?
-<<<<<<< HEAD
                         <Link
                             to={'/auth/login'}
-=======
-                        <button
-                            onClick={() => navigate('/auth/login')}
->>>>>>> 2b500f063109840196c4165f4ed4d5271b11daa4
                             className="ml-1 font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline"
                         >
                             Sign in
