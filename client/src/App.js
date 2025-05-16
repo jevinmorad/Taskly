@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import { AuthProvider } from "./context/AuthContext";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/layout/PrivateRoute";
 import RegisterPage from "./pages/auth/RegisterPage.jsx";
 import LoginPage from "./pages/auth/LoginPage.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";

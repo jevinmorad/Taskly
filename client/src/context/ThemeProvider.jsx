@@ -1,28 +1,41 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
-export const ThemeContext = createContext();
+const ThemeContext = createContext();
 
-export const ThemeProvider = (props) => {
-    const [theme, setTheme] = useState(() => {
-        if (typeof window !== 'undefined') {
-            return localStorage.getItem('theme') || 'light';
-        }
-        return 'light';
-    });
+export const ThemeProvider = ({ children }) => {
+    const [theme, setTheme] = useState('light');
 
+    // Check for system preference or saved preference on mount
     useEffect(() => {
-        const root = window.document.documentElement;
-        root.classList.remove(theme === 'dark' ? 'light' : 'dark');
-        root.classList.add(theme);
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-schema: dark)').matches;
 
-        localStorage.setItem('theme', theme);
-    }, [theme]);
+        if (savedTheme) {
+            setTheme(savedTheme);
+            document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+        } else if (prefersDark) {
+            setTheme('dark');
+            document.documentElement.classList.add('dark');
+        }
+    }, []);
 
-    const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
+    const toggleTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    }
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            {props.children}
+        <ThemeContext.Provider
+            value={{
+                theme,
+                toggleTheme
+            }}
+        >
+            {children}
         </ThemeContext.Provider>
-    );
+    )
 }
+
+export const useTheme = () => useContext(ThemeContext);
