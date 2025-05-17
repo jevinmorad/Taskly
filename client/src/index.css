@@ -13,7 +13,7 @@
         --popover: 0 0% 100%;
         --popover-foreground: 222.2 84% 4.9%;
 
-        --primary: 222.2 47.4% 11.2%;
+        --primary: 221 83% 53%;
         --primary-foreground: 210 40% 98%;
 
         --secondary: 210 40% 96.1%;
@@ -30,50 +30,9 @@
 
         --border: 214.3 31.8% 91.4%;
         --input: 214.3 31.8% 91.4%;
-        --ring: 222.2 84% 4.9%;
+        --ring: 221 83% 53%;
 
         --radius: 0.5rem;
-
-        --color-brand-blue-500: #3B82F6;
-        --color-brand-blue-600: #2563EB;
-        --color-brand-blue-700: #1D4ED8;
-        --color-brand-indigo-800: #3730A3;
-    }
-
-    .dark {
-        --background: 0 0% 0%;
-        --foreground: 0 0% 100%;
-
-        --card: 0 0% 12%;
-        --card-foreground: 0 0% 95%;
-
-        --popover: 0 0% 10%;
-        --popover-foreground: 0 0% 95%;
-
-        --primary: 45 78% 52%;
-        --primary-foreground: 0 0% 10%;
-
-        --secondary: 330 76% 31%;
-        --secondary-foreground: 0 0% 98%;
-
-        --muted: 0 0% 15%;
-        --muted-foreground: 0 0% 75%;
-
-        --accent: 45 78% 52%;
-        --accent-foreground: 0 0% 10%;
-
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 0 0% 98%;
-
-        --border: 45 78% 52%;
-        --input: 0 0% 15%;
-        --ring: 45 78% 60%;
-
-        --color-deep-black: #000000;
-        --color-soft-gold: #D4AF37;
-        --color-pure-white: #FFFFFF;
-        --color-light-grey: #C0C0C0;
-        --color-rich-burgundy: #800020;
     }
 }
 
@@ -96,48 +55,3 @@
 
 /* Add Inter font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-/* Dark mode utility classes */
-.text-soft-gold {
-    color: var(--color-soft-gold);
-}
-
-.text-rich-burgundy {
-    color: var(--color-rich-burgundy);
-}
-
-.text-light-grey {
-    color: var(--color-light-grey);
-}
-
-.text-deep-black {
-    color: var(--color-deep-black);
-}
-
-.text-pure-white {
-    color: var(--color-pure-white);
-}
-
-.bg-soft-gold {
-    background-color: var(--color-soft-gold);
-}
-
-.bg-rich-burgundy {
-    background-color: var(--color-rich-burgundy);
-}
-
-.bg-light-grey {
-    background-color: var(--color-light-grey);
-}
-
-.bg-deep-black {
-    background-color: var(--color-deep-black);
-}
-
-.border-soft-gold {
-    border-color: var(--color-soft-gold);
-}
-
-.border-rich-burgundy {
-    border-color: var(--color-rich-burgundy);
-}

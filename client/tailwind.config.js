@@ -6,8 +6,8 @@ module.exports = {
       center: true,
       padding: '2rem',
       screens: {
-        '2xl': '1400px',
-      },
+        '2xl': '1400px'
+      }
     },
     extend: {
       colors: {
@@ -44,35 +44,13 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-
-        'blue': {
-          500: '#3B82F6',
-          600: '#2563EB',
-          700: '#1D4ED8',
-        },
-        'indigo': {
-          800: '#3730A3',
-        },
-        'gray': {
-          300: '#D1D5DB',
-          500: '#6B7280',
-          600: '#4B5563',
-          700: '#374151',
-          800: '#1F2937',
-          900: '#111827',
-        },
-        'deep-black': '#000000',
-        'soft-gold': '#D4AF37',
-        'pure-white': '#FFFFFF',
-        'light-grey': '#C0C0C0',
-        'rich-burgundy': '#800020',
       },
       backgroundImage: {
         'sidebar-gradient': 'linear-gradient(to bottom, var(--tw-gradient-stops))',
       },
       gradientColorStops: {
-        'sidebar-from': 'var(--color-brand-blue-600)',
-        'sidebar-to': 'var(--color-brand-indigo-800)',
+        'sidebar-from': 'var(--color-core-blue-600)',
+        'sidebar-to': 'var(--color-core-indigo-800)',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -103,5 +81,5 @@ module.exports = {
       }
     }
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [],
 }
